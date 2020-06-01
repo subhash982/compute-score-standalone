@@ -35,11 +35,12 @@ public class CommandLineRunner {
 		try {
 			/*
 			 * I am using SOP to make the text clearly visible to command line screen
-			 * instead of using the logger.
+			 * instead of using the logger. This utility is using spring core module for
+			 * dependency injection
 			 */
 			ApplicationContext context = loadSpringScontext();
 			long computedScore = 0;
-			
+
 			// Set the initial command line value or default
 			String fileName = args.length > 0 ? args[0] : null;
 			// Set the default first time if not provided through command line
