@@ -30,14 +30,14 @@ public class FullNameScoreCalculator implements ScoreCalculator {
 	 */
 	@Override
 	public Long calculate() {
-
+		
 		// if Data set is small the perform the in-line sorting on stream
 		if (!isLargeDataSet) {
 			inputDataStream = inputDataStream.sorted(withSorting());
 		}
 		// Holding the index of each record in the sorted stream
 		AtomicLong atomicLong = new AtomicLong(1);
-		return inputDataStream.filter(withFilter()).sorted()
+		return inputDataStream.filter(withFilter())
 				.map(name -> new IndexWrapper(name, atomicLong.getAndIncrement())).map(this::computeScoreByFullName)
 				.reduce(0L, (a, b) -> a + b);
 	}
